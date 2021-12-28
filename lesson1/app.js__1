@@ -1,0 +1,13 @@
+const app = Vue.createApp({
+    // Data, functions etc to react to events that we want
+    // template: '<h2>I am a template</h2>' // This is a template we want to output in the mounted #app, rendered in div app in index.html. We now see 'I am a template' displayed in the app div under Hello Vue. 
+}) // By loading https://unpkg.com/vue@3.0.2  and then loading app.js in index.html, we get access to this Vue object, and are able to initialize the app.
+
+app.mount('#app') // We mount the app to the  <div id="app"></div> element in the dom. Now the Vue app controls everything inside this div in the html page. Any type of dynamic data that we want to output inside app element, or event/interactivity, all of that is now controlled by the app here. For this we create the object in the createApp method.
+
+
+
+
+
+
+

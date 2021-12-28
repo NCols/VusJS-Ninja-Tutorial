@@ -1,0 +1,20 @@
+<!-- Demo Live Server extension -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2"> // We could use 'vue@next' to make sure tu always use the latest Vue version, but for the tut we use 3.0.2 specifically. When we load this, we get access to a Vue object, that we use in app.js.</script>
+</head>
+<body>
+    <h1>Hello Vue :-)</h1>
+
+    <div id="app">
+        <!-- Below is a template we can interact wit through app.js. Not 'normal' html code. -->
+        <h2>I am a template</h2> 
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

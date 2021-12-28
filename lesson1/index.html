@@ -1,0 +1,63 @@
+<!-- Demo Live Server extension -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2">
+        // We could use 'vue@next' to make sure tu always use the latest Vue version, but for the tut we use 3.0.2 specifically. When we load this, we get access to a Vue object, that we use in app.js.
+    </script>
+</head>
+
+<body>
+    <h1>Hello Vue :-)</h1>
+
+    <div id="app">
+        <p>{{ title }} - {{ author }} - {{ age }}</p>
+        <!-- Double { mean access a variable (from app.js). These variables can only be used inside the scope of our #app div. -->
+        <button v-on:click="age++">Increase age</button>
+        <button v-on:click="age--">Decrease age</button>
+        <!-- 'v-on' is called a 'directive' in vue. This one allows to react to different events. In this case we want to react to a 'click' event on the button. Between "" after click=, we can run some normal javascript. Here we don't need to use { to access the property, that's only when outputting them to the browser. -->
+        <br><br>
+        <div @click="title = 'New book title'">Change book title.</div>
+        <!-- 'v-on:' (can also be replaced in Vue by an @, like here) work on any html object, not only buttons! -->
+        <div @click="changeTitle">Another way to change title</div>
+        <!-- Like we have access to the different data properties, we also have access to the different methods in app.js -> createApp() -->
+        <div @click="changeTitle2('Spam is good')">Yet another way</div>
+
+        <br><br>
+        <!-- Conditional rendering -->
+        <!-- Like v-on above, we can check conditions with v-if.
+        Vue will take v-if="" and see if "" content evaluates to true. Here we want to show the <p> line if true. Otherwise hide it -->
+        <div v-if="false">
+            <p>Default v-if is false here.</p>
+        </div>
+        <br><br>
+        <!-- Here the condition evaluates to true, so the data is displayed. -->
+        <div v-if="2==2">
+            <p>This is visible because "2==2" is TRUE.</p>
+        </div>
+        <br>
+        <div v-if="showMoviesMovies">
+            <p>Movies movies movies movies movies movies</p>
+        </div>
+        <button @click="hideShowMovies">
+            <span v-if="showMoviesMovies">Hide the line above</span>
+            <span v-if="!showMoviesMovies">Show the line above</span>
+        </button><br>
+        <button @click="hideShowMovies">
+            <span v-if="showMoviesMovies">Hide the line above</span>
+            <span v-else>Show the line above</span> <!-- We can also use v-else to operate as in a classical if/else situation -->
+        </button>
+
+        <br><br>
+        <div v-show="showMoviesMovies">This is only visible if showMoviesMovies is true.</div> <!-- v-show to easily show something if condition is true. Difference with v-if is that v-if takes the element out of the dom completely if it's false. Whereas v-show just hides it. -->
+    </div>
+    <br><br>
+    <p>{{ title }} -> isn't working.</p>
+    <script src="app.js"></script>
+</body>
+
+</html>
