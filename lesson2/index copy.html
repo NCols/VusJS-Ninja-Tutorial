@@ -1,0 +1,89 @@
+<!-- Demo Live Server extension -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Vue</title>
+    <script src="https://unpkg.com/vue@3.0.2">
+        // We could use 'vue@next' to make sure tu always use the latest Vue version, but for the tut we use 3.0.2 specifically. When we load this, we get access to a Vue object, that we use in app.js.
+    </script>
+    <style>
+        /*
+        .box {
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+        */
+        .body {
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        p, h3, ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.fav {
+            background: #1f8cad;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Hello Vue :-)</h1>
+
+    <div id="app">
+        <!--  attribute binding - binding dynamic values to html attributes -->
+        <a v-bind:href="url">Link to a website</a> <!-- v-bind: makes the content of "" after the : dynamic . So here with 'v-bind' the url argument becomes dynamic and binded to the 'url' parameter we declared in app.js. 'v-bind:' can also be shortened with ':' alone, so :href= -->
+
+        <div v-if="showBooks">
+            <!-- <p>{{ title }} - {{ author }} - {{ age }}</p> Worked if we just had these individual properties for one book. But now that we've added an array of books in the 'books' properties in app.js createApp(), we're going to display these with v-for -->
+
+            <ul>
+                <!-- v-for - display lists dynamically -->
+                <li v-for="book in filteredBooks" @click="toggleFav(book)" :class="{ fav: book.isFav }"><!-- Dynamic classes - ':class=' get a dynamic value based on evaluation of book.isFav. If isFav is true, then class is set to 'fav', if false, not set to fav --> 
+                    <img :src="book.img" :alt="book.title" width="50" height="70"> <!-- attribute binding again -->
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                </li>
+            </ul>
+
+        </div>
+
+        <button @click="toggleShowBooks"> <!-- 'v-if' can be replaced by @-->
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button>
+
+        <br>
+
+
+         <!-- mouse events -->
+        <!-- <div class="box" @mouseover="handleEvent($event, 5)">mouseover (enter)</div>--> <!-- If we want to pass a custom argument through the event function, but also want the event itself, we must first put $event, then our custom argument -->
+        <!-- <div class="box" @mouseleave="handleEvent">mouseleave</div> --><!-- When we don't pass any argument for the event function, the default argument passed to app.js is the event itself.-->
+        <!-- <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMousemove">Position - {{ x }} {{ y }}</div>  -->
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
