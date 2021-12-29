@@ -1,0 +1,7 @@
+npm install -g @vue/cli
+
+vue create <project folder name>
+
+Go through selection process, select Vue 3.
+
+Let project configure itself.

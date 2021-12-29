@@ -1,0 +1,22 @@
+In .vue files, template is required, but styles and scripts are not.
+
+Each .vue file contains templates, that are to be inserted inside our index.html at some point.
+
+So we split up our tempaltes into different components (like App.vue), for different parts of our application.
+
+Each component has its own template at the top. Each component must have 1 root <template> element at the top. Note: this is not an html tag.
+
+When downloading a Vue project, f.ex. from Github, we have to install dependencies first. For that, we open up a terminal and just type 'npm install'. This will install all the dependencies present in package.json.
+
+To manage complexity, we will need to create multiple separate components, like a menu bar, a side bar, a widget, etc.
+
+App.vue is always the root component. This one is initially mounted to the dom. All the other components that we create will be nested inside this one. For ex Header.vue, Articles.vue, Footer.vue. We can have components nested in sub-components.
+
+Component Tree
+-> Parent component
+    -> Child component
+
+Props:
+Pass data from App.vue to components.
+We return data via data () in export in App.vue. This data is passed to the App.vue template. In the template, we pass the data via bindings to the component. In the component, we take the props and export them to the template where they are accessible via {{}}
+
