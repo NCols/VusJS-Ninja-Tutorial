@@ -38,10 +38,11 @@ export default {
 .block {
   width: 400px;
   border-radius: 20px;
-  background: #0faf87;
+  background: rgb(43, 105, 236);
   color: white;
   text-align: center;
   padding: 100px 0;
   margin: 40px auto;
+  box-shadow: 5px 5px 5px rgba(72, 74, 77, 0.5);
 }
 </style>

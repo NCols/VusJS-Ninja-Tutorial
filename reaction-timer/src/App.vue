@@ -1,6 +1,6 @@
 <template>
 <h1>Ninja Reaction Timer</h1>
-<button @click="start" :disabled="isPlaying">Play !</button>
+<button @click="start" :disabled="isPlaying">{{ buttonText }}</button>
 <Block v-if="isPlaying" :delay="delay" @end="endGame" />
 <Results v-if="showResults" :score="score" />
 </template>
@@ -18,6 +18,7 @@ export default {
       delay: null,
       score: null,
       showResults: false,
+      buttonText: 'Play !',
     }
   },
   methods: {
@@ -30,18 +31,34 @@ export default {
       this.score = reactionTime
       this.isPlaying = false
       this.showResults = true
+      this.buttonText = 'Play again !'
     }
   },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #444;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #444;
+    margin-top: 60px;
+  }
+  button {
+    background: rgb(43, 105, 236);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    letter-spacing: 1px;
+  }
+  button[disabled] {
+    opacity: 0.2;
+    cursor: not-allowed;
+  }
 </style>
