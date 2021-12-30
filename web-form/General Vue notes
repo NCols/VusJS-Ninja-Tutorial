@@ -59,3 +59,11 @@ methods: {
     endGame(reactionTime) {do stuff}
 }
 
+Two-way data binding:
+We use v-model directive: <input type="email" required v-model="email">
+Sync the "email" property with a data var below:
+data() {
+        return {
+            email: ''
+        }
+
