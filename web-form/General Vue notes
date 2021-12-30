@@ -66,4 +66,7 @@ data() {
         return {
             email: ''
         }
+We bind it from the input, we take the input, via v-model, send it to the data.
+But if we update the value of our data, it will also update what we see in the input field an anywhere else where we access it. => Two-way
+
 
