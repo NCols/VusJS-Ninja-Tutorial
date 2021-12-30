@@ -20,3 +20,7 @@ Props:
 Pass data from App.vue to components.
 We return data via data () in export in App.vue. This data is passed to the App.vue template. In the template, we pass the data via bindings to the component. In the component, we take the props and export them to the template where they are accessible via {{}}
 
+Event modifiers: you can modify an event, like click, by appending '.something' to it. For ex @click.shift="toggleModal" will modify the click event and only work if shift key is pressed. Same for @click.right="toggleModal" for right click.
+@click.self="closeModal" will allow to close our modal only if we click on the backdrop itself, and not if we click on the opened modal.
+
+Slots help us pass templates into components. For example if we want to pass a complete form, we can't do it with props. We need slots.

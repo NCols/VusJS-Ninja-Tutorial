@@ -1,6 +1,10 @@
 <template>
 <h1>{{ title }}</h1>
-<Modal :header="header" :text="text" theme="dark" />
+<p>Welcome</p>
+<div v-if="showModal">
+  <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+</div>
+<button @click.alt="toggleModal">Open modal (alt+click)</button>
 </template>
 
 
@@ -15,9 +19,15 @@ export default {
   },
   data() {
     return {
-      title: 'My first Vue app :-)', //This can be output in the template above
+      title: 'Welcome on our app !', //This can be output in the template above
       header: 'Sign up for a giveaway',
       text: 'Grab your ninja swag',
+      showModal: false,
+    }
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal
     }
   }
 }
@@ -29,11 +39,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #285079;
+  color: #2c3e50;
   margin-top: 60px;
-},
-h1 { /* As it is, the styles in here apply to all other components as well. F.ex. if we put an h1 in Modal.vue, it will be styles by this one as well.*/
-  border-bottom: 1px, solid, #ddd;
+}
+h1 {
+  border-bottom: 1px solid #ddd;
   display: inline-block;
   padding-bottom: 10px;
 }

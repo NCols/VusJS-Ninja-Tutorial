@@ -1,5 +1,5 @@
 <template>
-    <div class="backdrop">
+    <div class="backdrop" @click.self="closeModal">
         <div class="modal" :class="{ sale: theme === 'sale', dark: theme === 'dark'}">
             <h1>
                 {{ header }}
@@ -14,6 +14,11 @@
 <script>
 export default {
     props: ['header', 'text', 'theme'],  // 'props' is required and must be an array, allows us to pass any value or props that we will be accepting into this component. Here we passed header from App.vue -> 'Modal header=""'. We can now access it in the template.
+    methods: {
+        closeModal() {
+            this.$emit('close')  // This is how we emit an event. On App.vue we will have a custom event listener on the Modal (@close=""). Between '' we put the name of the event we want to emit. Can be whatever we want.
+        }
+    }
 }
 </script>
 
