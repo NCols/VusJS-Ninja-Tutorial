@@ -40,3 +40,8 @@ We can also put some default content in our slot in our component, like <slot>De
 
 
 
+Teleport:
+We can use <teleport to=".modals"></teleport> instead of div in App.vue templates to teleport the modals into <div class="modals"></div> in index.html. In this case we use a class ".modals" as reference, but we could have used an id="modals" and reference to="#modals".
+
+
+
