@@ -48,3 +48,14 @@ Lifecycle hooks:
 https://v3.vuejs.org/guide/instance.html#lifecycle-hooks
 https://v3.vuejs.org/guide/instance.html#lifecycle-diagram
 
+
+Get data (variable for ex) from a child component back up to the parent component?
+In child component:
+this.$emit('end', this.reactionTime)
+In parent:
+<Block @end="endGame" />
+and
+methods: {
+    endGame(reactionTime) {do stuff}
+}
+
