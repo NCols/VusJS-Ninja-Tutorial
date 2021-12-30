@@ -2,9 +2,30 @@
 <h1>{{ title }}</h1>
 <p>Welcome</p>
 <div v-if="showModal">
-  <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+  <Modal  theme="sale" @close="toggleModal">
+    <template v-slot:links>
+      <a href="#">Sign up now</a>
+      <a href="#">More info</a>
+    </template>  
+    <h1>Ninja giveaway !</h1>
+    <p>Grab your ninja swag for half the price!</p>
+  </Modal>
 </div>
-<button @click.alt="toggleModal">Open modal (alt+click)</button>
+
+<div v-if="showModalTwo">
+  <Modal  theme="dark" @close="toggleModalTwo">
+    <template v-slot:noLinks>
+      <p>This isn't a link.</p>
+      <p>But is this?</p>
+    </template>  
+    <h1>Modal 2</h1>
+    <p>Not so important announcement</p>
+  </Modal>
+</div>
+
+
+<button @click.alt="toggleModal">Open modal 1 (alt+click)</button><br>
+<button @click="toggleModalTwo">Open modal 2</button>
 </template>
 
 
@@ -20,15 +41,18 @@ export default {
   data() {
     return {
       title: 'Welcome on our app !', //This can be output in the template above
-      header: 'Sign up for a giveaway',
-      text: 'Grab your ninja swag',
+      
       showModal: false,
+      showModalTwo: false,
     }
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal
-    }
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo
+    },
   }
 }
 </script>

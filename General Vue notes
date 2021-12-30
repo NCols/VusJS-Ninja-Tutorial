@@ -23,4 +23,20 @@ We return data via data () in export in App.vue. This data is passed to the App.
 Event modifiers: you can modify an event, like click, by appending '.something' to it. For ex @click.shift="toggleModal" will modify the click event and only work if shift key is pressed. Same for @click.right="toggleModal" for right click.
 @click.self="closeModal" will allow to close our modal only if we click on the backdrop itself, and not if we click on the opened modal.
 
-Slots help us pass templates into components. For example if we want to pass a complete form, we can't do it with props. We need slots.
+Slots help us pass templates into components. For example if we want to pass a complete form, we can't do it with props. We need slots. To pass slots, instead of having a one line self-closing component in our template, like
+<Modal  theme="sale" @close="toggleModal" />
+we now need to open up the tag
+<Modal  theme="sale" @close="toggleModal">
+</Modal>
+and insert stuff inside. So, for ex:
+<Modal>
+    <p>This is a template, and this is a slot!</p>
+</Modal>
+Then in our modal component, we can just pass <slot></slot> where we want in our template, to use the slot from App.vue.
+
+We can also use slot names to point towards specific slots and use more than 1 slot.
+<template v-slot:links> -> we name the slot 'links' in App.vue and access it through <slot name="links"></slot> in Modal.vue (our component).
+We can also put some default content in our slot in our component, like <slot>Default content</slot>, and that only shows if we haven't defined a default slot in the parent component.
+
+
+

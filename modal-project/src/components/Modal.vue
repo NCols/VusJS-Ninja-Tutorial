@@ -1,19 +1,18 @@
 <template>
     <div class="backdrop" @click.self="closeModal">
         <div class="modal" :class="{ sale: theme === 'sale', dark: theme === 'dark'}">
-            <h1>
-                {{ header }}
-            </h1>
-            <p>
-                {{ text}}
-            </p>
+            <slot>Default content</slot>
+            <div class="actions">
+                <slot name="noLinks"></slot>
+                <slot name="links"></slot>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['header', 'text', 'theme'],  // 'props' is required and must be an array, allows us to pass any value or props that we will be accepting into this component. Here we passed header from App.vue -> 'Modal header=""'. We can now access it in the template.
+    props: ['theme'],  // 'props' is required and must be an array, allows us to pass any value or props that we will be accepting into this component. Here we passed header from App.vue -> 'Modal header=""'. We can now access it in the template.
     methods: {
         closeModal() {
             this.$emit('close')  // This is how we emit an event. On App.vue we will have a custom event listener on the Modal (@close=""). Between '' we put the name of the event we want to emit. Can be whatever we want.
@@ -39,8 +38,22 @@ export default {
         height: 100%;
     }
     .modal h1 { /* '.modal' allows to only apply h1 styling to the modal class from the template. */
-        color: greenyellow;
+        color: rgb(39, 39, 39);
         padding-bottom: 20px;
+    }
+
+    .modal .actions {
+        text-align: center;
+        margin: 30px 0 10px 0;
+    }
+
+    .modal .actions a {
+        color: #333;
+        padding: 8px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        text-decoration: none;
+        margin: 10px;
     }
 
     .modal.sale {
@@ -48,10 +61,17 @@ export default {
         color: white;
     }
     .modal.sale h1 {
+        color: rgb(41, 255, 51);
+        border: 0px;
+    }
+
+    .modal.sale .actions {
         color: white;
     }
 
-    .modal.dark {
-        background: rgb(53, 51, 51);
+    .modal.sale .actions a {
+        color: white;
     }
+
+    
 </style>
