@@ -11,10 +11,30 @@
           <option value="developer">Web developer</option>
           <option value="designer">Web designer</option>
       </select>
+
+      <div class="terms">
+          <input type="checkbox" v-model="terms" required>
+          <label>I accept the terms and conditions</label>
+      </div>
+
+      <div>
+          <input type="checkbox" value="Shaun" v-model="names">
+          <label for="Shaun">Shaun</label>
+      </div>
+      <div>
+          <input type="checkbox" value="Brutus" v-model="names">
+          <label for="Brutus">Brutus</label>
+      </div>
+      <div>
+          <input type="checkbox" value="Karen" v-model="names">
+          <label for="Karen">Karen</label>
+      </div>
   </form>
   <p>Email: {{ email }}</p>
   <p>Password: {{ password }}</p>
   <p>Role: {{ role }}</p>
+  <p>Terms accepted: {{ terms }}</p>
+  <p>Names: {{ names }}</p>
 </template>
 
 <script>
@@ -24,6 +44,8 @@ export default {
             email: '', // v-model "email" form value is linked to this data
             password: '', // v-model "password" form value is linked to this data, etc.
             role: 'designer', // Here we put a default initial value, which will display 'Web designer' in the form
+            terms: false,
+            names: [], // Have the checked boxes for the names appear in the array through <input type="checkbox" value="Shaun" v-model="names">
         }
     },
 }
@@ -55,5 +77,13 @@ export default {
     border: none;
     border-bottom: 1px solid #ddd;
     color: #555;
+  }
+
+  input[type="checkbox"] {
+      display: inline-block;
+      width: 10px;
+      margin: 0 10px 0 0;
+      position: relative;
+      top: 2px;
   }
 </style>
