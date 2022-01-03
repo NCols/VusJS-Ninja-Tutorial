@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
+import Jobs from '../views/jobs/Jobs.vue'
 
 const routes = [
   // Whenever we want to create a new route, all we have to do is create the new route in this 'routes' array, then register it in 'const router'.
@@ -17,6 +18,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     component: About
+  },
+  {
+    path: '/jobs',
+    name: 'Jobs',
+    component: Jobs
   }
 ]
 
