@@ -83,3 +83,7 @@ this.password.length > 5 ? => is our evaluation, is this expression true or fals
 
 View routing with Vue.js requires the Vue Router package.
 
+For routing to work properly, Vue needs to be able to intercept requests (link clicks). Therefore we don't use the usual a href in App.vue, but rather special Vue router links:
+<router-link to="/">Home</router-link> |
+<router-link to="/about">About</router-link>
+
