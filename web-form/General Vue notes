@@ -69,4 +69,14 @@ data() {
 We bind it from the input, we take the input, via v-model, send it to the data.
 But if we update the value of our data, it will also update what we see in the input field an anywhere else where we access it. => Two-way
 
+Forms submit event modified:
+To execute a function on 'submit' of a form, we can use:
+<form @submit="handleSubmit"> -> will execute handleSubmit when user submits form. However, this won't prevent the default behaviour of reloading the page after submit. To prevent the default browser behaviour on submit, we can add .prevent as event modifier:
+<form @submit.prevent="handleSubmit">
+
+JS ternary expression, to change a bit from if else statements:
+this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 6 chars long'
+=> this.passwordError is the variable to which we pass the final value.
+this.password.length > 5 ? => is our evaluation, is this expression true or false.
+'' : 'Password must be at least 6 chars long' => if evaluation is true, we pass the value on left of the colon, if eval is false, we pass the expression right of the colon.
 
