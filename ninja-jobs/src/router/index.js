@@ -28,7 +28,8 @@ const routes = [
   {
   path: '/jobs/:id',
   name: 'JobDetails',
-  component: JobDetails
+  component: JobDetails,
+  props: true // To allow access to any route parameter as prop, as done in Jobs.vue template
   },
 ]
 
