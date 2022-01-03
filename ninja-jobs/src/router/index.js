@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Jobs from '../views/jobs/Jobs.vue'
+import JobDetails from '../views/jobs/JobDetails.vue'
 
 const routes = [
   // Whenever we want to create a new route, all we have to do is create the new route in this 'routes' array, then register it in 'const router'.
@@ -23,7 +24,12 @@ const routes = [
     path: '/jobs',
     name: 'Jobs',
     component: Jobs
-  }
+  },
+  {
+  path: '/jobs/:id',
+  name: 'JobDetails',
+  component: JobDetails
+  },
 ]
 
 const router = createRouter({
