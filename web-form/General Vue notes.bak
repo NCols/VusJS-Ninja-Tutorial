@@ -80,6 +80,3 @@ this.passwordError = this.password.length > 5 ? '' : 'Password must be at least 
 this.password.length > 5 ? => is our evaluation, is this expression true or false.
 '' : 'Password must be at least 6 chars long' => if evaluation is true, we pass the value on left of the colon, if eval is false, we pass the expression right of the colon.
 
-
-View routing with Vue.js requires the Vue Router package.
-

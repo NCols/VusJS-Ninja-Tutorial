@@ -5,3 +5,8 @@ vue create <project folder name>
 Go through selection process, select Vue 3.
 
 Let project configure itself.
+
+
+For a router project:
+
+Same but add 'Router' when selecting the packages to install.
