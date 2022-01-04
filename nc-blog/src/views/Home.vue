@@ -2,6 +2,7 @@
   <div class="home">
     <p>Home</p>
     <p>My name is {{ name }} and my age is {{ age }}.</p>
+    <button @click="handleClick">Click me</button>
   </div>
 </template>
 
@@ -15,7 +16,11 @@ export default {
     let name = 'mario'
     let age = 30
 
-    return { name: name, age: age }
+    const handleClick = () => {
+      console.log('You clicked me')
+    }
+
+    return { name, age, handleClick } // The functions in setup() also need to be returned to be usable inside the template.
   }
 };
 </script>
