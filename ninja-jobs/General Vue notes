@@ -87,3 +87,7 @@ For routing to work properly, Vue needs to be able to intercept requests (link c
 <router-link to="/">Home</router-link> |
 <router-link to="/about">About</router-link>
 
+
+Composition API:
+- Group logic together in a setup function. With the options API (used so far), the logic is spread out between the data, methods etc. We want to avoid that for larger projects.
+- Easily create reusable logic (functions)
