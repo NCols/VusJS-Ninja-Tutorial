@@ -1,30 +1,27 @@
 <template>
   <div class="home">
     <p>Home</p>
-    <p ref="p">My name is {{ name }} and my age is {{ age }}.</p>
+    <p>My name is {{ name }} and my age is {{ age }}.</p>
     <button @click="handleClick">Click me</button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from 'vue'
+
 export default {
   name: "Home",
   setup() {
-    // Initialize the Composition API for our component. Similar to the data() function in the ninja-jobs project. This will run before any lifecycle hook (mounted etc). Inside setup() we can write any normal javascript.
-    
-    const p = ref(null)
+    // const p = ref(null)
 
-    let name = 'mario'
-    let age = 30
+    const name = ref('mario')
+    const age = ref(30)
 
     const handleClick = () => {
-      console.log(p, p.value)
-      p.value.classList.add('test') // Add a 'test' class to out 'p.value' -> our text in the template.
-      p.value.textContent = 'Hello ninjas'
+      name.value = 'luigi' // By default, name and age are not reactive variables. When they change, it won't auto update the values in our template. To make these values in 'setup()' reactive, we can use refs. => const name = ref('mario'). The value of a ref can be accessed with nameOfTheRef.value. When we turn a value into a ref(), we can then pass it as updatable data in the template (witout specifying '.value').
     }
 
-    return { name, age, handleClick, p } // The functions in setup() also need to be returned to be usable inside the template.
+    return { name, age, handleClick } 
   }
 };
 </script>
