@@ -1,7 +1,7 @@
 <template>
   <h1>Jobs</h1>
   <div v-for="job in jobs" :key="job.id" class="job">
-      <router-link :to="{ name: 'JobDetails', params: { id: job.id}}">
+      <router-link :to="{ name: 'JobDetails', params: { id: job.id }}">
           <h2>{{ job.title }}</h2>
       </router-link>
   </div>
@@ -12,12 +12,16 @@ export default {
     data() {
         return {
             jobs: [
-                { title: 'Ninja UX Designer', id: 1, details: 'lorem'},
-                { title: 'Ninja Web developer', id: 2, details: 'ipsum'},
-                { title: 'Ninja Vue developer', id: 3, details: 'delorean'},
+               // This time we're going to fetch the 'jobs' data from the json server db and populate our jobs object in here to cycle through it in our template.
             ]
         }
-    }
+    },
+    mounted() {
+        fetch('http://localhost:3000/jobs')
+            .then(res => res.json()) // When only 1 argument in callback fction, no () needed for 'res' inside 'then'
+            .then(data => this.jobs = data) // We get the data (array object with the jobs data) and assign it to our jobs property.
+            .catch(err => console.log(err.message))
+    },
 }
 </script>
 
