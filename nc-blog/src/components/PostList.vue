@@ -22,6 +22,9 @@ export default {
         onUpdated(() => {
             console.log('Component updated')
         })
+    },
+    mounted() {  // This works as well, but gets executed after the setup() ones. So not mandatory to use the ones above, but preferred option for Net Ninja.
+        console.log('Mounted outside setup')
     }
 }
 </script>
