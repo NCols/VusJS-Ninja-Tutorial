@@ -1,42 +1,24 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <input type="text" v-model="search">
-    <p>Search term: {{ search }}</p>
-    <div v-for="name in matchingNames" :key="name">
-      {{ name }}
-    </div>
-    <button @click="handleClick">Stop watching</button>
+      <PostList :posts="posts" />
   </div>
 </template>
 
 <script>
-import { computed, ref, watch, watchEffect } from "vue";
+import PostList from '../components/PostList.vue'
+import { ref } from "vue";
 
 export default {
   name: "Home",
+  components: { PostList },
   setup() {
-    const search = ref('')
-    const names = ref(['Mario', 'Yoshi', 'Luigi', 'Toad', 'Bowser', 'Koopa', 'Peach'])
+    const posts = ref([
+      { title: 'Welcome to the blog', body: 'Building a body.', id: 1},
+      { title: 'Top 5 CSS tips', body: '1 - Do not talk about CSS.', id: 2},     
+    ])
     
-    const stopWatch = watch(search, () => {  // Now if we want to stop watching, we can put the watch() function in a constant, like here, and invoke this new const function at some point. This will effectively stop the watch. Same for watchEffect.
-      console.log('Watch function ran')
-    })
-
-    const stopEffect = watchEffect(() => { 
-      console.log('WatchEffect function ran', search.value)
-    })
-
-    const matchingNames = computed(() => {
-      return names.value.filter((name) => name.includes(search.value))
-    })
-
-    const handleClick = () => {
-      stopWatch()
-      stopEffect()
-    }
-
-    return { names, search, matchingNames, handleClick };
+    return { posts }
   },
 };
 </script>
