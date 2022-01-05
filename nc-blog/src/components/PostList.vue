@@ -7,12 +7,21 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, onUpdated } from '@vue/runtime-core'
 import SinglePost from './SinglePost.vue'
 export default {
     props: ['posts'],
     components: { SinglePost },
     setup(props) {
-        console.log(props.posts)
+        onMounted(() => {
+            console.log('Component mounted')
+        }),       // In setup() lifecycle hooks take 'on' before the usual name.
+        onUnmounted(() => {
+            console.log('Component unmounted')
+        }),
+        onUpdated(() => {
+            console.log('Component updated')
+        })
     }
 }
 </script>
