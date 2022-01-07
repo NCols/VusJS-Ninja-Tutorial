@@ -1,27 +1,40 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-      <PostList v-if="showPosts" :posts="posts" />
-      <button @click="showPosts = !showPosts">Toggle posts</button>
-      <button @click="posts.pop()">Delete a post</button>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList :posts="posts" />
+    </div>
+    <div v-else>Loading...</div>
   </div>
 </template>
 
 <script>
-import PostList from '../components/PostList.vue'
+import PostList from "../components/PostList.vue";
 import { ref } from "vue";
 
 export default {
   name: "Home",
   components: { PostList },
   setup() {
-    const posts = ref([
-      { title: 'Welcome to the blog', body: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum..', id: 1},
-      { title: 'Top 5 CSS tips', body: '1 - Do not talk about CSS.', id: 2},     
-    ])
-    const showPosts = ref('true')
-    
-    return { posts, showPosts }
+    const posts = ref([]);
+    const error = ref(null);
+
+    const load = async () => {
+      try {
+        let data = await fetch("http://localhost:3000/posts"); // We wait for the fetch to be finished (await) and when it's done, the resulting data is stored in 'data'.
+        if (!data.ok) {
+          // If fetched data 'not ok' (see fetch result, there's an OK flag with the returned data)
+          throw Error("No data available"); // So if data not ok, we thow an error, and this error will then be handled by the catch block below.
+        }
+        posts.value = await data.json(); // We take the data response we have, and we pass it into our posts constant by applying the json() method.
+      } catch (err) {
+        error.value = err.message; // We update the above created constant error with our message err.message.
+        console.log(error.value);
+      }
+    };
+    load();
+    return { posts, error }; // We export the error const to use it in the template in case there was an issue while fetching the data.
   },
 };
 </script>
