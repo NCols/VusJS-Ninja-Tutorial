@@ -18,7 +18,7 @@ const getPosts = () => {
         }
     };
 
-    return { posts, error, load } // Here we also have to return the load function, in order to capture it and be able to run it from our Home.vue
+    return { posts, error, load } 
 }
 
 export default getPosts
