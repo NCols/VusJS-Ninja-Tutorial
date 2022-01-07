@@ -11,30 +11,17 @@
 
 <script>
 import PostList from "../components/PostList.vue";
-import { ref } from "vue";
+import getPosts from "../composables/getPosts"
 
 export default {
   name: "Home",
   components: { PostList },
-  setup() {
-    const posts = ref([]);
-    const error = ref(null);
+  setup() {  // in order to reuse our code that fetches the data, we can externalize it into a composable (getPosts.js). So we put all the code we had in here in getPosts.js, and the 'import { ref }...' statement as well. But we have to import getPosts.
+    const { posts, error, load } = getPosts()  // Runs the function, creates posts & error consts, returns consts and the load() function, but doesn't run it yet. Thanks to 'const { posts, error, load }' I can now use posts, error and load() in my document.
 
-    const load = async () => {
-      try {
-        let data = await fetch("http://localhost:3000/posts"); // We wait for the fetch to be finished (await) and when it's done, the resulting data is stored in 'data'.
-        if (!data.ok) {
-          // If fetched data 'not ok' (see fetch result, there's an OK flag with the returned data)
-          throw Error("No data available"); // So if data not ok, we thow an error, and this error will then be handled by the catch block below.
-        }
-        posts.value = await data.json(); // We take the data response we have, and we pass it into our posts constant by applying the json() method.
-      } catch (err) {
-        error.value = err.message; // We update the above created constant error with our message err.message.
-        console.log(error.value);
-      }
-    };
-    load();
-    return { posts, error }; // We export the error const to use it in the template in case there was an issue while fetching the data.
+    load()
+
+    return { posts, error }; 
   },
 };
 </script>
