@@ -12,7 +12,7 @@ import { ref } from '@vue/reactivity'
 import useLogin from '../composables/useLogin'
 
 export default {
-    setup() {
+    setup(props, context) { // 'context' necessary to access 'emit()' method in 'setup()'
         // refs
         const email = ref('')
         const password = ref('')
@@ -22,7 +22,8 @@ export default {
         const handleSubmit = async () => {
             await login(email.value, password.value)
             if (!error.value) {
-                console.log('User logged in.')
+                // We will emit an event that will trigger authenticated users (only) to be redirected to the chatroom
+                context.emit('login')
             }
         }
 
