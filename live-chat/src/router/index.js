@@ -7,6 +7,11 @@ const routes = [
     name: 'Welcome',
     component: Welcome
   },
+  {
+    path: '/',
+    name: 'Welcome',
+    component: Welcome
+  },
  
 ]
 
